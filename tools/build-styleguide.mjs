@@ -15,6 +15,16 @@ const fragment = process.argv.includes("--fragment");
 
 let html = await readFile(join(root, "design-system", "index.html"), "utf8");
 
+// 0. Polices et GSAP : la page du site les sert en local, la version autonome
+//    (fichier unique, sans dossiers fonts/ ni js/vendor/) les charge depuis leurs CDN.
+html = html
+  .replace('<link rel="stylesheet" href="../css/fonts.css">', () =>
+    `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Mona+Sans:ital,wdth,wght@0,75..125,400..600;1,75..125,400..600&display=swap">`)
+  .replace('<script src="../js/vendor/gsap.min.js"></script>', () =>
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>');
+
 // 1. CSS du projet en ligne
 const linkRe = /<link rel="stylesheet" href="\.\.\/(css\/[\w-]+\.css)">/g;
 for (const [tag, path] of [...html.matchAll(linkRe)]) {

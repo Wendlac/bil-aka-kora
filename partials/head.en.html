@@ -7,10 +7,10 @@
 <link rel="alternate" hreflang="fr" href="{{fr}}">
 <link rel="alternate" hreflang="en" href="{{en}}">
 <meta property="og:locale:alternate" content="fr_FR">
-<!-- Polices : Google Fonts pendant la conception ; à auto-héberger en WOFF2 avant la mise en ligne. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Mona+Sans:ital,wdth,wght@0,75..125,400..600;1,75..125,400..600&display=swap">
+<!-- Polices auto-hébergées (css/fonts.css) ; les deux fichiers de l'écran d'accueil sont préchargés. -->
+<link rel="preload" href="{{root}}fonts/goudy-bookletter-1911-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{root}}fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{root}}css/fonts.css">
 <link rel="stylesheet" href="{{root}}css/tokens.css">
 <link rel="stylesheet" href="{{root}}css/base.css">
 <link rel="stylesheet" href="{{root}}css/components.css">

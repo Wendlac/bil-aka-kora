@@ -11,10 +11,10 @@
 <link rel="alternate" hreflang="fr" href="../../mentions-legales/">
 <link rel="alternate" hreflang="en" href="./">
 <meta property="og:locale:alternate" content="fr_FR">
-<!-- Polices : Google Fonts pendant la conception ; à auto-héberger en WOFF2 avant la mise en ligne. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Mona+Sans:ital,wdth,wght@0,75..125,400..600;1,75..125,400..600&display=swap">
+<!-- Polices auto-hébergées (css/fonts.css) ; les deux fichiers de l'écran d'accueil sont préchargés. -->
+<link rel="preload" href="../../fonts/goudy-bookletter-1911-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../css/fonts.css">
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/base.css">
 <link rel="stylesheet" href="../../css/components.css">
@@ -120,7 +120,7 @@
         <ul class="legal__list">
           <li><strong>Videos.</strong> No video loads when a page opens. The YouTube player, in its cookie-free version (youtube-nocookie.com), only loads when you press play on a video. From that moment, YouTube (Google) may collect data under its own policy.</li>
           <li><strong>Outgoing links.</strong> Links to Spotify, YouTube and Instagram open those services, which follow their own rules.</li>
-          <li><strong>During design.</strong> Typefaces load from Google Fonts and the animation library from cdnjs (Cloudflare): these services receive the visitor's IP address. They will be hosted on the site itself before launch, and this paragraph removed.</li>
+          <li><strong>Typefaces and animation.</strong> Typefaces and the animation library are hosted on the site itself: no third-party service is contacted when a page opens.</li>
         </ul>
       </section>
 
@@ -177,8 +177,7 @@
 <!-- @end listen -->
 
 <!-- @partial scripts -->
-<!-- GSAP : CDN pendant la conception ; à copier dans js/vendor/ avant la mise en ligne. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+<script src="../../js/vendor/gsap.min.js" defer></script>
 <script src="../../js/app.js" defer></script>
 <!-- @end scripts -->
 </body>
