@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Bil Aka Kora, design tokens
+   Source unique de vérité : toute valeur de couleur, type, espace ou
+   mouvement utilisée sur le site vient d'ici.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Couleur -----------------------------------------------------------
+     Nuit     : les fonds noirs des photos de scène, légèrement chauds.
+     Coton    : le blanc cassé des tuniques, jamais un blanc pur.
+     Latérite : la terre rouge du sud du Burkina, reprise de la frise.
+     Contrastes mesurés sur --night-950 (WCAG 2.1) en commentaire.        */
+  --night-950: #0d0a09;   /* fond de page                                 */
+  --night-900: #15110f;   /* surfaces posées (panneau, feuille d'écoute)  */
+  --night-850: #1d1714;   /* cards (texte méta 5.1:1)                     */
+  --night-800: #211b18;   /* survol, fonds d'images en chargement         */
+  --night-700: #3a312c;   /* filets, bordures                             */
+
+  --cotton-100: #eee6da;  /* titres, texte fort                   15.9:1 */
+  --cotton-200: #e2d9cc;  /* texte courant                        ~14:1  */
+  --cotton-300: #bdb2a4;  /* texte secondaire                      9.5:1 */
+  --cotton-500: #948878;  /* méta, légendes, crédits               5.7:1 */
+
+  --laterite-500: #c47a48; /* frise, accent graphique              5.9:1 */
+  --laterite-400: #d98f5c; /* accent en texte, survol, focus       7.6:1 */
+
+  --clay-300: #ef8e8e;     /* erreur de saisie, toujours avec icône 8.4:1 */
+
+  /* Rôles : les composants n'utilisent que ces alias. */
+  --color-bg: var(--night-950);
+  --color-surface: var(--night-900);
+  --color-surface-hover: var(--night-800);
+  --color-card: var(--night-850);
+  --color-card-hover: var(--night-800);
+  --color-line: var(--night-700);
+  --color-text-strong: var(--cotton-100);
+  --color-text: var(--cotton-200);
+  --color-text-muted: var(--cotton-300);
+  --color-text-subtle: var(--cotton-500);
+  --color-accent: var(--laterite-400);
+  --color-frieze: var(--laterite-500);
+  --color-focus: var(--laterite-400);
+  --color-error: var(--clay-300);
+  --color-scrim: rgb(13 10 9 / 0.72);
+
+  /* ---- Typographie -------------------------------------------------------
+     Deux familles, pas une de plus.
+     Serif : voix de l'artiste (logotype, titres, menu, poème).
+             Goudy Bookletter 1911 n'existe qu'en romain : jamais
+             d'italique ni de gras en serif (voir base.css).
+     Sans  : voix de l'interface (texte courant, méta, boutons).
+     En production, les fontes seront auto-hébergées en WOFF2 (sous-ensemble
+     latin + latin étendu) pour la performance et la vie privée.          */
+  --font-serif: "Goudy Bookletter 1911", "Goudy Old Style", "Sorts Mill Goudy", Georgia, serif;
+  --font-sans: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+
+  /* Mona Sans est variable en largeur : les libellés et boutons sont
+     légèrement élargis pour une voix distincte, sans espacement excessif. */
+  --stretch-label: 112.5%;
+
+  /* Échelle fluide : de 360px à 1440px de large. */
+  --step--1: clamp(0.8125rem, 0.7917rem + 0.0926vw, 0.875rem); /* 13 à 14 px */
+  --step-0:  clamp(1.0625rem, 1.0417rem + 0.0926vw, 1.125rem); /* 17 à 18 px */
+  --step-1:  clamp(1.25rem, 1.1667rem + 0.3704vw, 1.5rem);     /* 20 à 24 px */
+  --step-2:  clamp(1.625rem, 1.4167rem + 0.9259vw, 2.25rem);   /* 26 à 36 px */
+  --step-3:  clamp(2.125rem, 1.75rem + 1.6667vw, 3.25rem);     /* 34 à 52 px */
+  --step-4:  clamp(2.75rem, 2.0833rem + 2.963vw, 4.75rem);     /* 44 à 76 px */
+  --step-5:  clamp(3.25rem, 2rem + 5.5556vw, 7rem);            /* 52 à 112 px */
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.3;
+  --leading-body: 1.6;
+  --leading-verse: 1.75;
+
+  --tracking-display: -0.01em;
+  --tracking-label: 0.1em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* ---- Espace ------------------------------------------------------------ */
+  --space-3xs: 0.25rem;  /*  4 */
+  --space-2xs: 0.5rem;   /*  8 */
+  --space-xs: 0.75rem;   /* 12 */
+  --space-s: 1rem;       /* 16 */
+  --space-m: 1.5rem;     /* 24 */
+  --space-l: 2rem;       /* 32 */
+  --space-xl: 3rem;      /* 48 */
+  --space-2xl: 4rem;     /* 64 */
+  --space-3xl: 6rem;     /* 96 */
+
+  --space-section: clamp(4rem, 2.5rem + 6.6667vw, 8.5rem); /* 64 à 136 px */
+  --gutter: clamp(1rem, 0.3333rem + 2.963vw, 3rem);        /* 16 à 48 px */
+
+  /* ---- Mise en page ------------------------------------------------------ */
+  --measure: 36rem;          /* colonne de lecture, ~62 caractères       */
+  --container: 72rem;        /* contenu courant                          */
+  --container-wide: 90rem;   /* galeries, vidéos                         */
+  --header-height: 4.5rem;
+
+  --ratio-cover: 1 / 1;
+  --ratio-photo: 4 / 5;
+  --ratio-video: 16 / 9;
+
+  /* ---- Forme --------------------------------------------------------------
+     Aucun arrondi : les photos et pochettes sont des tirages, pas des cartes.
+     Seule exception : le bouton lecture, rond comme un tambour.
+     Aucun filet de séparation : on sépare par l'espace ou par une card.          */
+  --radius-none: 0;
+  --radius-round: 999px;
+
+  /* ---- Mouvement ---------------------------------------------------------
+     Référence : sade.com. La lumière change, les objets ne bougent pas.
+     Fondus d'opacité et de couleur en courbe linéaire ; le déplacement est
+     réservé à ce qui entre ou sort de l'écran (menu, feuille, message).   */
+  --ease-fade: linear;                           /* fondus : comme un jeu d'orgue */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* entrées : départ franc      */
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);     /* sorties : on s'efface       */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* boucles (bouton occupé)     */
+  --dur-fast: 150ms;     /* couleur d'un lien, fond d'une ligne              */
+  --dur-base: 300ms;     /* soulignement, bouton, icône                      */
+  --dur-slow: 600ms;     /* menu, feuille, images qui s'allument             */
+  --dur-cinema: 1200ms;  /* apparitions de page, photos chargées             */
+  --stagger: 80ms;       /* décalage entre éléments d'une même série         */
+  --press-opacity: 0.7;  /* retour immédiat à l'appui                        */
+  --dur-frieze: 24s;         /* un tour de frise : lent, comme une marche */
+
+  /* ---- Frise ------------------------------------------------------------- */
+  --frieze-height: 2.5rem;
+  --frieze-tile: 10rem;
+
+  /* ---- Empilement -------------------------------------------------------- */
+  --z-header: 110;     /* au-dessus du menu : « Fermer » reste en place */
+  --z-menu: 100;
+  --z-sheet: 200;
+  --z-lightbox: 300;
+}

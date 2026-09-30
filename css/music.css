@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Musique : discographie et pages album
+   Pages générées par tools/build-albums.mjs à partir de contenus/albums.json.
+   ========================================================================== */
+
+/* ---- Discographie ----------------------------------------------------------
+   Six albums : 3 colonnes sur ordinateur, 2 sur tablette, 1 sur mobile.
+   Jamais 4 colonnes, qui laisseraient une rangée de deux albums orphelins. */
+
+.discography {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 30rem) {
+  .discography {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  .discography {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.album-card__listen {
+  font-size: var(--step--1);
+}
+
+/* ---- Page album ------------------------------------------------------------- */
+
+.album {
+  display: grid;
+  gap: var(--space-3xl);
+}
+
+.album > .link-arrow--back {
+  justify-self: start;
+  font-size: var(--step--1);
+}
+
+.album__hero {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .album__hero {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-2xl);
+  }
+}
+
+.album__body {
+  display: grid;
+  gap: var(--space-m);
+  justify-items: start;
+}
+
+.album__body h1 {
+  font-size: var(--step-5);
+}
+
+.album__body > p:not(.label) {
+  max-width: var(--measure);
+}
+
+.album__tracks {
+  display: grid;
+  gap: var(--space-m);
+}

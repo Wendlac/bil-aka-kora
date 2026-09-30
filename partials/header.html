@@ -1,0 +1,28 @@
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <button class="menu-toggle site-header__menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+    <span class="menu-toggle__open" aria-hidden="true">Menu</span>
+    <span class="menu-toggle__close" aria-hidden="true">Fermer</span>
+  </button>
+  <nav class="site-header__lang" aria-label="Langue">
+    <div class="lang-switch"><a href="{{fr}}"{{lang:fr}} hreflang="fr" lang="fr">FR</a><a href="{{en}}"{{lang:en}} hreflang="en" lang="en">EN</a></div>
+  </nav>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <nav class="menu__nav" aria-label="Principal">
+    <a class="menu__link" href="{{s:musique}}"{{current:musique}}>Musique</a>
+    <a class="menu__link" href="{{s:videos}}"{{current:videos}}>Vidéos</a>
+    <a class="menu__link" href="{{s:concerts}}"{{current:concerts}}>Concerts</a>
+    <a class="menu__link" href="{{s:photos}}"{{current:photos}}>Photos</a>
+    <a class="menu__link" href="{{s:bil-aka-kora}}"{{current:bil-aka-kora}}>Bil Aka Kora</a>
+  </nav>
+  <div class="menu__foot">
+    <div class="menu__secondary">
+      <a class="label" href="{{s:pro}}"{{current:pro}}>Booking et presse</a>
+      <div class="lang-switch"><a href="{{fr}}"{{lang:fr}} hreflang="fr" lang="fr">FR</a><a href="{{en}}"{{lang:en}} hreflang="en" lang="en">EN</a></div>
+    </div>
+    <div class="frieze frieze--walk" aria-hidden="true"></div>
+  </div>
+</div>

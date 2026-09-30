@@ -1,0 +1,111 @@
+{
+  "_regles": "Images dans images/galerie/<fichier>.jpg (grand, 1600 px max) et <fichier>-720.jpg (vignette). Originaux dans sources/photos/. « credit » : null tant que le photographe n'est pas connu. Préférer un nombre de photos multiple de 3 par section (grille de 3 colonnes).",
+  "sections": [
+    {
+      "id": "scene",
+      "label": "Sur scène",
+      "titre": "En concert",
+      "photos": [
+        {
+          "fichier": "scene-guitare-rouge",
+          "l": 1342,
+          "h": 1440,
+          "credit": "Impact Horizon Prod",
+          "alt": "Bil Aka Kora chante, guitare à la main, sur scène en tunique rouge.",
+          "alt_en": "Bil Aka Kora sings on stage, guitar in hand, wearing a red tunic."
+        },
+        {
+          "fichier": "scene-noir-blanc",
+          "l": 1067,
+          "h": 1600,
+          "credit": "Impact Horizon Prod",
+          "alt": "En noir et blanc, Bil Aka Kora chante au micro, souriant, en tunique claire brodée.",
+          "alt_en": "In black and white, Bil Aka Kora sings into the microphone, smiling, in a pale embroidered tunic."
+        },
+        {
+          "fichier": "scene-profil-bleu",
+          "l": 810,
+          "h": 1013,
+          "credit": null,
+          "alt": "Bil Aka Kora de profil, guitare en main, sous des lumières bleues.",
+          "alt_en": "Bil Aka Kora in profile, guitar in hand, under blue lights."
+        },
+        {
+          "fichier": "scene-danse-djongo",
+          "l": 1600,
+          "h": 1600,
+          "credit": "Impact Horizon Prod",
+          "alt": "Sur scène, Bil Aka Kora danse le Djongo, genou levé, face à un danseur ; ses musiciens rient derrière lui.",
+          "alt_en": "On stage, Bil Aka Kora dances the Djongo, knee raised, facing another dancer; his musicians laugh behind him."
+        },
+        {
+          "fichier": "scene-tunique-blanche",
+          "l": 1440,
+          "h": 1440,
+          "credit": "Impact Horizon Prod",
+          "alt": "Bil Aka Kora parle au micro, en tunique blanche brodée de carrés de tissu colorés.",
+          "alt_en": "Bil Aka Kora speaks into the microphone, in a white tunic embroidered with colourful patches of fabric."
+        },
+        {
+          "fichier": "scene-tunique-kaki",
+          "l": 942,
+          "h": 1440,
+          "credit": "Impact Horizon Prod",
+          "alt": "Bil Aka Kora chante à pleine voix, guitare en main, en tunique kaki brodée de jaune.",
+          "alt_en": "Bil Aka Kora sings at full voice, guitar in hand, in a khaki tunic embroidered in yellow."
+        },
+        {
+          "fichier": "scene-concert-live",
+          "l": 960,
+          "h": 1440,
+          "credit": "MFX Photography",
+          "alt": "Bil Aka Kora rit sur scène, la main sur la tête, guitare en bandoulière ; une choriste chante derrière lui.",
+          "alt_en": "Bil Aka Kora laughs on stage, hand on his head, guitar over his shoulder; a backing singer sings behind him."
+        },
+        {
+          "fichier": "scene-sourire-rouge",
+          "l": 1440,
+          "h": 1440,
+          "credit": "Impact Horizon Prod",
+          "alt": "Bil Aka Kora sourit sous un projecteur, en tunique rouge.",
+          "alt_en": "Bil Aka Kora smiles under a spotlight, wearing a red tunic."
+        },
+        {
+          "fichier": "scene-lumieres-rouges",
+          "l": 1078,
+          "h": 1079,
+          "credit": null,
+          "alt": "Bil Aka Kora chante au micro, guitare en main, sous des projecteurs rouges.",
+          "alt_en": "Bil Aka Kora sings into the microphone, guitar in hand, under red stage lights."
+        }
+      ],
+      "label_en": "On stage",
+      "titre_en": "In concert"
+    },
+    {
+      "id": "portraits",
+      "label": "Portraits",
+      "titre": "Hors scène",
+      "photos": [
+        {
+          "fichier": "portrait-studio",
+          "l": 1054,
+          "h": 1440,
+          "credit": null,
+          "alt": "Portrait de Bil Aka Kora, assis, en chemise noire, souriant.",
+          "alt_en": "Portrait of Bil Aka Kora, seated, in a black shirt, smiling."
+        },
+        {
+          "fichier": "portrait-noir-blanc",
+          "l": 768,
+          "h": 961,
+          "credit": null,
+          "alt": "En noir et blanc, Bil Aka Kora pointe du doigt l'objectif en souriant, en manteau sombre.",
+          "alt_en": "In black and white, Bil Aka Kora points at the camera with a smile, wearing a dark coat."
+        }
+      ],
+      "label_en": "Portraits",
+      "titre_en": "Off stage"
+    }
+  ]
+}

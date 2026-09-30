@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<!-- @partial head -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add("js");</script>
+<meta name="theme-color" content="#0d0a09">
+<!-- Site de conception, non officiel : hors des moteurs de recherche pour ne pas concurrencer la présence réelle de l'artiste. -->
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="fr" href="./">
+<link rel="alternate" hreflang="en" href="../en/shows/">
+<meta property="og:locale:alternate" content="en_GB">
+<!-- Polices : Google Fonts pendant la conception ; à auto-héberger en WOFF2 avant la mise en ligne. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Mona+Sans:ital,wdth,wght@0,75..125,400..600;1,75..125,400..600&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<!-- @end head -->
+<title>Concerts : Bil Aka Kora et le Djongo System sur scène</title>
+<meta name="description" content="Dates à venir et concerts passés de Bil Aka Kora et du Djongo System, au Burkina Faso et ailleurs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Concerts : Bil Aka Kora et le Djongo System sur scène">
+<meta property="og:description" content="Dates à venir et concerts passés de Bil Aka Kora et du Djongo System, au Burkina Faso et ailleurs.">
+<meta property="og:image" content="../images/photos/danse-djongo.jpg">
+<meta property="og:locale" content="fr_FR">
+<link rel="stylesheet" href="../css/concerts.css">
+</head>
+<body>
+
+<!-- @partial header -->
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <button class="menu-toggle site-header__menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+    <span class="menu-toggle__open" aria-hidden="true">Menu</span>
+    <span class="menu-toggle__close" aria-hidden="true">Fermer</span>
+  </button>
+  <nav class="site-header__lang" aria-label="Langue">
+    <div class="lang-switch"><a href="./" aria-current="true" hreflang="fr" lang="fr">FR</a><a href="../en/shows/" hreflang="en" lang="en">EN</a></div>
+  </nav>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <nav class="menu__nav" aria-label="Principal">
+    <a class="menu__link" href="../musique/">Musique</a>
+    <a class="menu__link" href="../videos/">Vidéos</a>
+    <a class="menu__link" href="../concerts/" aria-current="page">Concerts</a>
+    <a class="menu__link" href="../photos/">Photos</a>
+    <a class="menu__link" href="../bil-aka-kora/">Bil Aka Kora</a>
+  </nav>
+  <div class="menu__foot">
+    <div class="menu__secondary">
+      <a class="label" href="../pro/">Booking et presse</a>
+      <div class="lang-switch"><a href="./" aria-current="true" hreflang="fr" lang="fr">FR</a><a href="../en/shows/" hreflang="en" lang="en">EN</a></div>
+    </div>
+    <div class="frieze frieze--walk" aria-hidden="true"></div>
+  </div>
+</div>
+<!-- @end header -->
+
+<div class="masthead">
+  <a class="logotype" href="../">Bil Aka Kora</a>
+</div>
+
+<main id="contenu">
+  <div class="container concerts">
+    <header class="page-head">
+      <p class="label">Concerts</p>
+      <h1>Sur scène</h1>
+      <p class="page-head__intro">Le Djongo se vit d'abord en live, avec le Djongo System.</p>
+    </header>
+
+    <section class="concerts__block" aria-labelledby="upcoming">
+      <header class="section-head">
+        <p class="label">À venir</p>
+        <h2 id="upcoming">Prochaines dates</h2>
+      </header>
+      <div class="empty-state">
+        <p class="lead">Aucune date annoncée pour le moment.</p>
+        <a class="link-arrow" href="#passes">Voir les concerts passés <svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-arrow-right"></use></svg></a>
+      </div>
+    </section>
+
+    <div class="card-grid">
+      <div class="card card--stack">
+        <!-- @partial subscribe -->
+        <div class="subscribe">
+          <form data-subscribe novalidate data-msg-empty="Indiquez votre adresse e-mail." data-msg-invalid="Cette adresse semble incomplète. Exemple : nom@domaine.com">
+            <div class="field">
+              <label class="label" for="subscribe-email">Être prévenu des prochaines dates</label>
+              <div class="subscribe__row">
+                <div class="field__control">
+                  <input class="field__input" id="subscribe-email" name="email" type="email" autocomplete="email" placeholder="Votre adresse e-mail" required aria-describedby="subscribe-email-msg">
+                  <span class="field__line" aria-hidden="true"></span>
+                </div>
+                <button class="btn btn--solid" type="submit"><span>M'avertir</span></button>
+              </div>
+              <p class="field__message" id="subscribe-email-msg" aria-live="polite"><svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-warning-circle"></use></svg><span class="field__message-text"></span></p>
+            </div>
+          </form>
+          <p class="subscribe__done" hidden tabindex="-1"><svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-check"></use></svg><span>C'est noté. Vous recevrez les prochaines dates.</span></p>
+        </div>
+        <!-- @end subscribe -->
+      </div>
+      <div class="card card--stack">
+        <p class="label">Programmateurs</p>
+        <p class="card__title">Vous programmez un festival ou une salle ?</p>
+        <p>Vidéo live, kit presse, fiche technique et contact : tout est réuni sur une seule page.</p>
+        <a class="link-arrow" href="../pro/">Booking et presse <svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+
+    <section class="concerts__block" aria-labelledby="passes">
+      <header class="section-head">
+        <p class="label">Archives</p>
+        <h2 id="passes">Concerts passés</h2>
+      </header>
+      <section class="concerts-year" aria-labelledby="year-2026">
+        <h3 class="concerts-year__title" id="year-2026">2026</h3>
+        <ul class="events">
+          <li class="event event--past">
+            <p class="event__date"><time datetime="2026-07-31"><span class="event__day">31</span> <span class="label">Juil. 2026</span></time><span class="visually-hidden">, vendredi 31 juillet 2026</span></p>
+            <div class="event__where">
+              <p class="event__place">Manga, Burkina Faso</p>
+              <p class="event__venue">Place de la Nation, 20 h 30</p>
+            </div>
+            <p class="event__name">Concert de la Résilience et du Triomphe, avec l'Orchestre de la Présidence du Faso</p>
+            <a class="event__action link-arrow" href="https://www.presidencedufaso.bf/manga-resonne-au-rythme-de-la-resilience-nationale/" target="_blank" rel="noopener">Le récit <svg class="icon" aria-hidden="true" data-external><use href="../icons/sprite.svg#i-arrow-up-right"></use></svg></a>
+          </li>
+          <li class="event event--past">
+            <p class="event__date"><time datetime="2026-07-26"><span class="event__day">26</span> <span class="label">Juil. 2026</span></time><span class="visually-hidden">, dimanche 26 juillet 2026</span></p>
+            <div class="event__where">
+              <p class="event__place">Pô, Burkina Faso</p>
+              <p class="event__venue">Place Nemaro, 20 h 30</p>
+            </div>
+            <p class="event__name">Concert de la Résilience et du Triomphe, avec l'Orchestre de la Présidence du Faso</p>
+            <a class="event__action link-arrow" href="https://www.terangatimesn.com/Burkina-Faso-Po-L-Orchestre-de-la-Presidence-du-Faso-fait-vibrer-la-ville-avec-le-Concert-de-la-Resilience-et-du_a6744.html" target="_blank" rel="noopener">Le récit <svg class="icon" aria-hidden="true" data-external><use href="../icons/sprite.svg#i-arrow-up-right"></use></svg></a>
+          </li>
+        </ul>
+      </section>
+      <section class="concerts-year" aria-labelledby="year-2025">
+        <h3 class="concerts-year__title" id="year-2025">2025</h3>
+        <ul class="events">
+          <li class="event event--past">
+            <p class="event__date"><time datetime="2025-12-10"><span class="event__day">10</span> <span class="label">Déc. 2025</span></time><span class="visually-hidden">, mercredi 10 décembre 2025</span></p>
+            <div class="event__where">
+              <p class="event__place">Ouagadougou, Burkina Faso</p>
+              <p class="event__venue">SIAO, 21 h</p>
+            </div>
+            <p class="event__name">Concert live, à la veille de la fête de l'Indépendance</p>
+            <a class="event__action link-arrow" href="https://lefaso.net/spip.php?article142766" target="_blank" rel="noopener">Le récit <svg class="icon" aria-hidden="true" data-external><use href="../icons/sprite.svg#i-arrow-up-right"></use></svg></a>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </div>
+</main>
+
+<!-- @partial footer -->
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <div class="site-footer__col">
+      <p class="label">Booking</p>
+      <!-- Adresse fictive (projet concept). -->
+      <a href="mailto:booking@bilakakora.com">booking@bilakakora.com</a>
+      <a class="meta" href="../pro/">Kit presse et fiche technique</a>
+    </div>
+    <div class="site-footer__col">
+      <p class="label">Suivre</p>
+      <ul class="social">
+        <li><a href="https://www.instagram.com/bilakakora/" rel="me noopener" target="_blank">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@makawol" rel="me noopener" target="_blank">YouTube</a></li>
+        <li><a href="https://open.spotify.com/artist/4VhVFvCmRA777ILfblURVe" rel="me noopener" target="_blank">Spotify</a></li>
+      </ul>
+    </div>
+    <div class="site-footer__col">
+      <p class="label">Langue</p>
+      <div class="lang-switch"><a href="./" aria-current="true" hreflang="fr" lang="fr">FR</a><a href="../en/shows/" hreflang="en" lang="en">EN</a></div>
+      <a class="meta" href="../mentions-legales/">Mentions légales</a>
+    </div>
+  </div>
+  <div class="frieze" role="img" aria-label="Frise kasséna"></div>
+</footer>
+<!-- @end footer -->
+
+<!-- @partial listen -->
+<dialog class="listen-dialog" id="listen" aria-labelledby="listen-title">
+  <div class="listen-dialog__scrim"></div>
+  <div class="sheet">
+    <div class="sheet__head">
+      <p class="label" id="listen-title">Écouter sur</p>
+      <button class="sheet__close" type="button" aria-label="Fermer" data-listen-close><svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-x"></use></svg></button>
+    </div>
+    <ul class="sheet__list">
+      <li><a href="https://open.spotify.com/artist/4VhVFvCmRA777ILfblURVe" target="_blank" rel="noopener"><svg class="icon icon--brand" aria-hidden="true"><use href="../icons/sprite.svg#i-spotify"></use></svg><span>Spotify</span><svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-arrow-up-right"></use></svg></a></li>
+      <li><a href="https://www.youtube.com/@makawol" target="_blank" rel="noopener"><svg class="icon icon--brand" aria-hidden="true"><use href="../icons/sprite.svg#i-youtube"></use></svg><span>YouTube</span><svg class="icon" aria-hidden="true"><use href="../icons/sprite.svg#i-arrow-up-right"></use></svg></a></li>
+    </ul>
+  </div>
+</dialog>
+<!-- @end listen -->
+
+<!-- @partial scripts -->
+<!-- GSAP : CDN pendant la conception ; à copier dans js/vendor/ avant la mise en ligne. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+<script src="../js/app.js" defer></script>
+<!-- @end scripts -->
+</body>
+</html>

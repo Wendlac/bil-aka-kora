@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Photos
+   Page générée par tools/build-photos.mjs à partir de contenus/photos.json.
+   ========================================================================== */
+
+.photo-section {
+  padding-block: var(--space-xl);
+}
+
+/* Grille régulière : 3 colonnes pour un multiple de 3, sinon 2. */
+.gallery--thirds,
+.gallery--pairs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Sur 2 colonnes, 9 photos laisseraient la dernière seule : la première
+   passe en pleine largeur (1 + 4 × 2). */
+@media (max-width: 59.99rem) {
+  .gallery--thirds > li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .gallery--thirds > li:first-child img {
+    aspect-ratio: var(--ratio-cover);
+  }
+}
+
+@media (min-width: 60rem) {
+  .gallery--thirds {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.photo-section__credit {
+  margin-top: var(--space-s);
+}

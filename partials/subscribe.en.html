@@ -1,0 +1,16 @@
+<div class="subscribe">
+  <form data-subscribe novalidate data-msg-empty="Please enter your email address." data-msg-invalid="This address looks incomplete. Example: name@domain.com">
+    <div class="field">
+      <label class="label" for="subscribe-email">Get notified of upcoming shows</label>
+      <div class="subscribe__row">
+        <div class="field__control">
+          <input class="field__input" id="subscribe-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required aria-describedby="subscribe-email-msg">
+          <span class="field__line" aria-hidden="true"></span>
+        </div>
+        <button class="btn btn--solid" type="submit"><span>Notify me</span></button>
+      </div>
+      <p class="field__message" id="subscribe-email-msg" aria-live="polite"><svg class="icon" aria-hidden="true"><use href="{{root}}icons/sprite.svg#i-warning-circle"></use></svg><span class="field__message-text"></span></p>
+    </div>
+  </form>
+  <p class="subscribe__done" hidden tabindex="-1"><svg class="icon" aria-hidden="true"><use href="{{root}}icons/sprite.svg#i-check"></use></svg><span>Done. You will hear about the next shows.</span></p>
+</div>

@@ -1,0 +1,1450 @@
+/* ==========================================================================
+   Composants
+   Chaque composant ne consomme que des tokens (voir tokens.css).
+
+   Règle de mouvement (référence sade.com) : au survol, la lumière change
+   (opacité, couleur, soulignement) en courbe linéaire ; rien ne grossit ni
+   ne rebondit. Seuls les éléments qui entrent ou sortent de l'écran se
+   déplacent, et de quelques pixels. Les séquences (menu, feuille d'écoute,
+   formulaire) sont pilotées par GSAP dans js/app.js.
+   ========================================================================== */
+
+/* ---- Icônes ---------------------------------------------------------------
+   Phosphor Light (interface) et Simple Icons (plateformes), en sprite SVG.
+   Taille liée au texte, couleur héritée : l'icône suit le survol du lien. */
+
+/* Dans une rangée flex, aligner au centre (align-items: center), jamais sur
+   la ligne de base : un SVG n'en a pas et remonte de 2 à 3 px.
+   --icon-optical-offset abaisse l'icône vers le milieu des minuscules,
+   centre visuel d'un mot, un peu plus bas que le centre de la boîte. */
+.icon {
+  --icon-optical-offset: 0.04em;
+  display: inline-block;
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  fill: currentColor;
+}
+
+.icon--brand {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ---- En-tête ------------------------------------------------------------
+   Fixe, au-dessus du menu : le bouton garde sa place quand il devient
+   « Fermer ». Le conteneur laisse passer les clics, ses enfants non.     */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: var(--header-height);
+  padding-inline: var(--gutter);
+  padding-top: env(safe-area-inset-top, 0px);
+  pointer-events: none;
+}
+
+.site-header > * {
+  pointer-events: auto;
+}
+
+/* Fondu de nuit : le contenu s'efface sous l'en-tête au lieu de se
+   superposer au mot « Menu ». Masqué quand le menu est ouvert.           */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1.5rem;
+  z-index: -1;
+  background: linear-gradient(to bottom, var(--color-bg) 35%, transparent);
+  transition: opacity var(--dur-base) var(--ease-fade);
+}
+
+.is-menu-open .site-header::before {
+  opacity: 0;
+}
+
+.site-header__menu {
+  grid-column: 2;
+}
+
+.site-header__lang {
+  grid-column: 3;
+  justify-self: end;
+  transition: opacity var(--dur-base) var(--ease-fade);
+}
+
+/* La langue s'efface quand le menu est ouvert : elle est dans le menu. */
+.is-menu-open .site-header__lang {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Bouton Menu / Fermer ------------------------------------------------
+   Les deux mots occupent la même cellule et se relaient en fondu.        */
+
+.menu-toggle {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: var(--space-s);
+  font-size: var(--step--1);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-strong);
+}
+
+.menu-toggle > span {
+  grid-area: 1 / 1;
+  transition: opacity var(--dur-base) var(--ease-fade);
+}
+
+.menu-toggle__close,
+.menu-toggle[aria-expanded="true"] .menu-toggle__open {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__close {
+  opacity: 1;
+}
+
+.menu-toggle:hover {
+  color: var(--color-accent);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+/* ---- Sélecteur de langue ----------------------------------------------- */
+
+.lang-switch {
+  display: flex;
+  gap: var(--space-2xs);
+  font-size: var(--step--1);
+  color: var(--color-text-subtle);
+}
+
+.lang-switch a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.lang-switch a:hover,
+.lang-switch [aria-current="true"] {
+  color: var(--color-text-strong);
+}
+
+/* Dans le pied de page, la langue s’aligne à gauche avec le reste. */
+.site-footer .lang-switch {
+  gap: var(--space-m);
+}
+
+.site-footer .lang-switch a {
+  min-width: 0;
+}
+
+/* ---- Logotype ----------------------------------------------------------- */
+
+.logotype {
+  font-family: var(--font-serif);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text-strong);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logotype--hero {
+  font-size: var(--step-5);
+}
+
+.masthead {
+  display: grid;
+  justify-items: center;
+  padding-top: calc(var(--header-height) + var(--space-l));
+  padding-bottom: var(--space-2xl);
+}
+
+/* ---- Hero d'accueil -----------------------------------------------------
+   Une photo, le nom, et une ligne basse : écouter et prochain concert.   */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: min(100svh, 60rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgb(13 10 9 / 0.55), transparent 30%),
+    linear-gradient(to top, var(--color-bg), transparent 35%);
+}
+
+.hero__title {
+  align-self: start;
+  justify-self: center;
+  padding-top: calc(var(--header-height) + var(--space-l));
+  text-align: center;
+}
+
+.hero__strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2xs) var(--space-l);
+  padding: var(--space-l) var(--gutter);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+/* Entrée du hero : la photo s'allume (img[data-fade]), puis le nom, puis
+   la ligne basse. Le contenu reste visible sans JS.                      */
+.js .hero__title {
+  animation: fade-in var(--dur-cinema) var(--ease-fade) 400ms both;
+}
+
+.js .hero__strip {
+  animation: fade-in var(--dur-cinema) var(--ease-fade) 900ms both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+/* ---- Menu plein écran ----------------------------------------------------
+   Caché par défaut ; js/app.js l'ouvre en fondu (voile, puis liens en
+   série, puis ligne secondaire et frise).                                */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: grid;
+  grid-template-rows: var(--header-height) 1fr auto;
+  background: var(--color-scrim);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  overscroll-behavior: contain;
+}
+
+.menu__nav {
+  grid-row: 2;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-s);
+}
+
+.menu__link {
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  line-height: var(--leading-tight);
+  color: var(--color-text-strong);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.menu__link[aria-current="page"],
+.menu__link:hover {
+  color: var(--color-accent);
+}
+
+.menu__foot {
+  grid-row: 3;
+}
+
+.menu__secondary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-s) var(--space-l);
+  padding: var(--space-l) var(--gutter);
+}
+
+.menu__secondary > a {
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.menu__secondary > a:hover {
+  color: var(--color-text-strong);
+}
+
+/* ---- Boutons ---------------------------------------------------------------
+   Deux variantes. Survol : les couleurs se croisent en fondu linéaire.
+   Appui : baisse d'opacité immédiate. Occupé : un filet de lumière
+   parcourt le bas du bouton.                                              */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: 48px;
+  padding: 0 var(--space-m);
+  overflow: hidden;
+  border: 1px solid var(--color-text-strong);
+  font-size: var(--step--1);
+  font-weight: var(--weight-medium);
+  font-stretch: var(--stretch-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-strong);
+  transition: background-color var(--dur-base) var(--ease-fade),
+    color var(--dur-base) var(--ease-fade),
+    border-color var(--dur-base) var(--ease-fade),
+    opacity var(--dur-base) var(--ease-fade);
+}
+
+.btn:hover {
+  background: var(--color-text-strong);
+  color: var(--color-bg);
+}
+
+.btn--solid {
+  background: var(--color-text-strong);
+  color: var(--color-bg);
+}
+
+.btn--solid:hover {
+  background: transparent;
+  color: var(--color-text-strong);
+}
+
+.btn:active {
+  opacity: var(--press-opacity);
+  transition-duration: 0s;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.btn[aria-busy="true"] > * {
+  opacity: 0.55;
+}
+
+.btn[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 35%;
+  height: 2px;
+  background: currentColor;
+  animation: btn-busy 1.4s var(--ease-in-out, ease-in-out) infinite;
+}
+
+@keyframes btn-busy {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(290%); }
+}
+
+/* ---- Lien avec icône ------------------------------------------------------ */
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  text-decoration: none;
+  color: var(--color-text-strong);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.link-arrow:hover {
+  color: var(--color-accent);
+}
+
+/* Seule exception au « rien ne bouge » : la flèche avance d'un cheveu,
+   pour dire « par ici ». Diagonale pour les liens externes.              */
+.link-arrow .icon {
+  margin-top: var(--icon-optical-offset);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.link-arrow:hover .icon {
+  transform: translateX(0.15em);
+}
+
+.link-arrow:hover .icon[data-external] {
+  transform: translate(0.12em, -0.12em);
+}
+
+/* Lien retour : la flèche est avant le texte et recule au survol. */
+.link-arrow--back:hover .icon {
+  transform: translateX(-0.15em);
+}
+
+/* ---- Bouton « Copier » -----------------------------------------------------
+   Discret : un libellé et une icône. Une fois copié, l'icône devient une
+   coche et le libellé « Copié », en latérite, le temps d'un fondu.        */
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 44px;
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.copy-btn:hover {
+  color: var(--color-text-strong);
+}
+
+.copy-btn .icon {
+  margin-top: var(--icon-optical-offset);
+}
+
+.copy-btn .icon--done,
+.copy-btn.is-done .icon--idle {
+  display: none;
+}
+
+.copy-btn.is-done .icon--done {
+  display: inline-block;
+}
+
+.copy-btn.is-done {
+  color: var(--color-accent);
+}
+
+/* ---- Chiffre clé -------------------------------------------------------------
+   Chiffres en Mona Sans, comme les dates : ceux de Goudy sont elzéviriens. */
+
+.fact__value {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--step-4);
+  font-weight: var(--weight-regular);
+  font-stretch: 87.5%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-text-strong);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ---- Liste en ligne ------------------------------------------------------
+   Remplace les séparateurs typographiques (point médian, tiret) : les
+   éléments sont séparés par de l'espace, sans trait.                     */
+
+.inline-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3xs) var(--space-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ---- Champ de saisie -------------------------------------------------------
+   Une ligne, pas une boîte. Au focus, un trait latérite se dessine de
+   gauche à droite et sert d'indicateur de focus. En erreur, le trait et
+   le message passent en argile, toujours accompagnés d'une icône.        */
+
+.field {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.field__control {
+  position: relative;
+}
+
+/* Hauteur fixe de 48 px, identique au bouton : champ et bouton alignés
+   quelle que soit la police. Texte à la taille du texte courant.        */
+.field__input {
+  width: 100%;
+  height: 48px;
+  padding: 0;
+  line-height: 1.2;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+  background: transparent;
+  font-size: var(--step-0);
+  color: var(--color-text-strong);
+  caret-color: var(--color-accent);
+  transition: border-color var(--dur-base) var(--ease-fade);
+}
+
+.field__input::placeholder {
+  color: var(--color-text-subtle);
+  opacity: 1;
+  transition: opacity var(--dur-base) var(--ease-fade);
+}
+
+.field__input:hover {
+  border-bottom-color: var(--color-text-subtle);
+}
+
+.field__input:focus {
+  outline: none;
+}
+
+.field__input:focus::placeholder {
+  opacity: 0;
+}
+
+.field__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-slow) var(--ease-out),
+    background-color var(--dur-base) var(--ease-fade);
+  pointer-events: none;
+}
+
+.field__input:focus-visible + .field__line,
+.field__input:focus + .field__line {
+  transform: scaleX(1);
+}
+
+.field__message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 1.5em;
+  font-size: var(--step--1);
+  color: var(--color-error);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-fade);
+}
+
+.field.is-invalid .field__line {
+  background: var(--color-error);
+  transform: scaleX(1);
+}
+
+.field.is-invalid .field__message {
+  opacity: 1;
+}
+
+/* ---- Formulaire « Être prévenu » ---------------------------------------- */
+
+.subscribe {
+  display: grid;
+  gap: var(--space-m);
+  max-width: 34rem;
+}
+
+/* La rangée ne contient que le champ et le bouton : le libellé est au-dessus,
+   le message en dessous. Les deux font 48 px, centrés verticalement.     */
+.subscribe__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+}
+
+.subscribe__row .field__control {
+  flex: 1 1 14rem;
+}
+
+.subscribe__row .btn {
+  flex: none;
+}
+
+.subscribe__done {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  font-size: var(--step-1);
+  color: var(--color-text-strong);
+}
+
+.subscribe__done .icon {
+  color: var(--color-accent);
+}
+
+/* ---- Feuille « Écouter sur » ----------------------------------------------
+   Un <dialog> modal. Mobile : la feuille monte du bas de l'écran.
+   Bureau : elle apparaît au centre. Le voile et la feuille sont animés
+   par js/app.js ; le ::backdrop natif reste transparent.                 */
+
+.listen-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  overflow: hidden;
+}
+
+.listen-dialog[open] {
+  display: grid;
+  align-items: end;
+  justify-items: center;
+}
+
+.listen-dialog::backdrop {
+  background: transparent;
+}
+
+.listen-dialog__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-scrim);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@media (min-width: 48rem) {
+  .listen-dialog[open] {
+    align-items: center;
+  }
+}
+
+.sheet {
+  position: relative;
+  width: 100%;
+  background: var(--color-card);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (min-width: 48rem) {
+  .sheet {
+    width: min(100% - 2 * var(--gutter), 24rem);
+  }
+}
+
+.sheet__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-xs) var(--space-xs) var(--space-2xs) var(--space-m);
+}
+
+.sheet__close {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.sheet__close:hover {
+  color: var(--color-text-strong);
+}
+
+.sheet__list {
+  display: grid;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0 var(--space-xs) var(--space-xs);
+  list-style: none;
+}
+
+.sheet__list a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: 56px;
+  padding: 0 var(--space-s);
+  text-decoration: none;
+  color: var(--color-text-strong);
+  transition: background-color var(--dur-fast) var(--ease-fade);
+}
+
+
+.sheet__list a:hover {
+  background: var(--color-card-hover);
+}
+
+/* Logo, nom, puis l'icône « externe » poussée à droite. */
+.sheet__list .icon:last-child {
+  margin-left: auto;
+  color: var(--color-text-subtle);
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-fade);
+}
+
+.sheet__list a:hover .icon:last-child {
+  color: var(--color-accent);
+  transform: translate(0.12em, -0.12em);
+}
+
+/* ---- Card ------------------------------------------------------------------
+   Aucun filet sur le site : quand des éléments doivent se distinguer, ils
+   reçoivent un fond légèrement plus clair que la page. Pas d'arrondi,
+   pas d'ombre. Survol d'une card cliquable : le fond s'éclaire en fondu. */
+
+.card {
+  padding: var(--space-l);
+  background: var(--color-card);
+}
+
+a.card,
+.card--link {
+  display: block;
+  text-decoration: none;
+  transition: background-color var(--dur-base) var(--ease-fade);
+}
+
+a.card:hover,
+.card--link:hover {
+  background: var(--color-card-hover);
+}
+
+/* Grille de cards : deux côte à côte sur ordinateur, empilées sur mobile.
+   Chaque card empile titre, texte et lien, alignés en haut.              */
+.card-grid {
+  display: grid;
+  gap: var(--space-s);
+}
+
+@media (min-width: 48rem) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card--stack {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.card__title {
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+  color: var(--color-text-strong);
+}
+
+.card--stack > p:not(.label):not(.card__title) {
+  color: var(--color-text-muted);
+}
+
+.card--stack > .link-arrow {
+  margin-top: var(--space-2xs);
+}
+
+.card--stack .subscribe {
+  justify-self: stretch;
+  max-width: none;
+}
+
+/* ---- En-tête de section ------------------------------------------------ */
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section-head {
+  display: grid;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+}
+
+.section-head--center {
+  justify-items: center;
+  text-align: center;
+}
+
+/* Lien « tout voir » sous une section. */
+.section-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+/* ---- En-tête de page intérieure ------------------------------------------
+   Libellé, titre et, au besoin, une phrase d’introduction. Le titre reste
+   un cran sous le logotype du bandeau pour ne pas le concurrencer.        */
+
+.page-head {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-3xl);
+  text-align: center;
+}
+
+.page-head h1 {
+  font-size: var(--step-3);
+}
+
+.page-head__intro {
+  max-width: var(--measure);
+  color: var(--color-text-muted);
+}
+
+/* ---- Sortie à la une (accueil) ----------------------------------------- */
+
+.release {
+  display: grid;
+  gap: var(--space-l);
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .release {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-2xl);
+  }
+}
+
+.release__body {
+  display: grid;
+  gap: var(--space-m);
+  justify-items: start;
+}
+
+/* ---- Images : elles s'allument ---------------------------------------------
+   Au chargement, une image passe du noir à la lumière (comme sur
+   sade.com). Uniquement si JS est actif : sans JS, tout est visible.     */
+
+.js img[data-fade] {
+  opacity: 0;
+  transition: opacity var(--dur-cinema) var(--ease-fade);
+}
+
+.js img[data-fade].is-loaded {
+  opacity: 1;
+}
+
+/* ---- Pochette ------------------------------------------------------------ */
+
+.cover {
+  aspect-ratio: var(--ratio-cover);
+  width: 100%;
+  object-fit: cover;
+  background: var(--color-surface-hover);
+}
+
+/* En attendant le fichier de la pochette : titre en serif sur fond nuit. */
+.cover-placeholder {
+  display: grid;
+  align-content: end;
+  aspect-ratio: var(--ratio-cover);
+  width: 100%;
+  padding: var(--space-m);
+  background: var(--color-card);
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  line-height: 1;
+  color: var(--color-text-muted);
+}
+
+/* ---- Discographie --------------------------------------------------------
+   Survol d'une carte : la pochette s'éclaire, le titre se souligne.      */
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-xl) var(--space-l);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.album-card {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.album-card__media {
+  display: block;
+  background: var(--color-bg);
+}
+
+.album-card__media > * {
+  opacity: 0.86;
+  transition: opacity var(--dur-slow) var(--ease-fade);
+}
+
+.album-card:hover .album-card__media > *,
+.album-card__media:focus-visible > * {
+  opacity: 1;
+}
+
+.album-card__title {
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+}
+
+.album-card__title a {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+}
+
+.album-card:hover .album-card__title a {
+  text-decoration-color: var(--color-text-strong);
+}
+
+.album-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+}
+
+/* ---- Liste de titres ---------------------------------------------------- */
+
+.tracklist {
+  margin: 0;
+  padding: var(--space-xs) var(--space-l);
+  list-style: none;
+  counter-reset: track;
+  background: var(--color-card);
+}
+
+.tracklist li {
+  counter-increment: track;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  gap: var(--space-s);
+  align-items: baseline;
+  padding-block: var(--space-xs);
+}
+
+.tracklist li::before {
+  content: counter(track, decimal-leading-zero);
+  font-size: var(--step--1);
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.tracklist__title {
+  color: var(--color-text-strong);
+}
+
+.tracklist__lang {
+  display: block;
+  font-size: var(--step--1);
+  color: var(--color-text-subtle);
+}
+
+/* ---- Concerts ------------------------------------------------------------ */
+
+.events {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Une card par concert. Mobile : la date à gauche, le reste empilé à
+   droite. Bureau : date, lieu, nom du concert, lien, sur une ligne.       */
+.event {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: var(--space-2xs) var(--space-m);
+  align-items: center;
+  padding: var(--space-m) var(--space-l);
+  background: var(--color-card);
+}
+
+@media (min-width: 48rem) {
+  .event {
+    grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 1.4fr) auto;
+    gap: var(--space-m) var(--space-l);
+  }
+}
+
+.event__date {
+  grid-row: 1 / span 3;
+  align-self: start;
+  display: grid;
+  gap: var(--space-3xs);
+  line-height: 1;
+}
+
+@media (min-width: 48rem) {
+  .event__date {
+    grid-row: auto;
+    align-self: center;
+  }
+}
+
+/* Chiffres en Mona Sans : ceux de Goudy Bookletter sont de style ancien,
+   « 10 » s’y lit « IO ». */
+.event__day {
+  font-family: var(--font-sans);
+  font-size: var(--step-3);
+  font-weight: var(--weight-regular);
+  font-stretch: 87.5%;
+  letter-spacing: -0.02em;
+  color: var(--color-text-strong);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.event__date time {
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.event__where {
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.event__place {
+  color: var(--color-text-strong);
+}
+
+.event__venue,
+.event__name {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.event__action {
+  justify-self: start;
+  font-size: var(--step--1);
+}
+
+/* Concert passé : la date s’efface un peu, le reste ne change pas. */
+.event--past .event__day {
+  color: var(--color-text-muted);
+}
+
+.empty-state {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: center;
+  padding: var(--space-2xl) var(--space-l);
+  text-align: center;
+  background: var(--color-card);
+}
+
+/* ---- Vidéo (façade : YouTube ne se charge qu'au clic) --------------------
+   Survol : l'image s'éclaire, le cercle se remplit. Rien ne zoome.       */
+
+.video {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+}
+
+.video__frame {
+  position: relative;
+  display: block;
+  aspect-ratio: var(--ratio-video);
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.video__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  transition: opacity var(--dur-slow) var(--ease-fade);
+}
+
+.video__frame:hover img,
+.video__frame:focus-visible img {
+  opacity: 1;
+}
+
+.video__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 1px solid var(--color-text-strong);
+  border-radius: var(--radius-round);
+  background: rgb(13 10 9 / 0.4);
+  color: var(--color-text-strong);
+  transition: background-color var(--dur-base) var(--ease-fade),
+    color var(--dur-base) var(--ease-fade);
+}
+
+.video__play .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.15rem; /* compense visuellement la pointe du triangle */
+}
+
+.video__frame:hover .video__play,
+.video__frame:focus-visible .video__play {
+  background: var(--color-text-strong);
+  color: var(--color-bg);
+}
+
+/* Lecteur chargé au clic : il remplace la vignette, en fondu. */
+.video__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  animation: fade-in var(--dur-slow) var(--ease-fade) both;
+}
+
+/* ---- Galerie photo ------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery li {
+  background: var(--color-bg);
+}
+
+.gallery img {
+  aspect-ratio: var(--ratio-photo);
+  width: 100%;
+  object-fit: cover;
+}
+
+.gallery a {
+  display: block;
+}
+
+.gallery a img {
+  opacity: 0.88;
+  transition: opacity var(--dur-slow) var(--ease-fade);
+}
+
+.gallery a:hover img,
+.gallery a:focus-visible img {
+  opacity: 1;
+}
+
+.gallery-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2xs) var(--space-m);
+  margin-bottom: var(--space-m);
+}
+
+.gallery-head h3 {
+  font-size: var(--step-2);
+}
+
+/* ---- Visionneuse plein écran (lightbox) -----------------------------------
+   Fond nuit presque opaque, la photo en entier (jamais recadrée), la
+   légende et le crédit dessous. Flèches sur les côtés sur ordinateur, en
+   bas sur mobile, à portée de pouce. Animations dans js/app.js.          */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(13 10 9 / 0.96);
+  color: inherit;
+  overflow: hidden;
+}
+
+.lightbox[open] {
+  display: grid;
+}
+
+.lightbox::backdrop {
+  background: transparent;
+}
+
+.lightbox__stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: var(--header-height) var(--gutter) calc(var(--space-3xl) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 48rem) {
+  .lightbox__stage {
+    padding: var(--header-height) calc(var(--gutter) + 4rem) var(--space-xl);
+  }
+}
+
+.lightbox__figure {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  margin: 0;
+  min-height: 0;
+}
+
+.lightbox__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100svh - var(--header-height) - 9rem);
+  object-fit: contain;
+  background: var(--color-card);
+}
+
+.lightbox__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3xs) var(--space-m);
+  max-width: var(--measure);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.lightbox__btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.lightbox__btn:hover {
+  color: var(--color-text-strong);
+}
+
+.lightbox__btn .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.lightbox__close {
+  top: calc(var(--space-s) + env(safe-area-inset-top, 0px));
+  right: var(--gutter);
+}
+
+.lightbox__prev,
+.lightbox__next {
+  bottom: calc(var(--space-s) + env(safe-area-inset-bottom, 0px));
+}
+
+.lightbox__prev {
+  left: var(--gutter);
+}
+
+.lightbox__next {
+  right: var(--gutter);
+}
+
+@media (min-width: 48rem) {
+  .lightbox__prev,
+  .lightbox__next {
+    top: 50%;
+    bottom: auto;
+    translate: 0 -50%;
+  }
+}
+
+/* ---- Repères (chronologie) --------------------------------------------- */
+
+.timeline {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0;
+}
+
+.timeline__row {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-m);
+  padding-block: var(--space-2xs);
+}
+
+.timeline dt {
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--color-accent);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.timeline dd {
+  margin: 0;
+  align-self: center;
+}
+
+/* ---- Téléchargements (page Pro) ---------------------------------------- */
+
+.downloads {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.downloads a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-xs) var(--space-m);
+  padding: var(--space-m) var(--space-l);
+  background: var(--color-card);
+  text-decoration: none;
+  color: var(--color-text-strong);
+  transition: background-color var(--dur-base) var(--ease-fade);
+}
+
+.downloads__name {
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+  transition: color var(--dur-fast) var(--ease-fade);
+}
+
+.downloads a:hover {
+  background: var(--color-card-hover);
+}
+
+.downloads a:hover .downloads__name {
+  color: var(--color-accent);
+}
+
+.downloads__end {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.downloads__end > .icon {
+  width: 1.4em;
+  height: 1.4em;
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-fade);
+}
+
+.downloads a:hover .downloads__end > .icon {
+  color: var(--color-accent);
+  transform: translateY(0.12em);
+}
+
+/* ---- La frise ------------------------------------------------------------
+   Seul motif du site. Dents régulières, une entaille profonde par motif,
+   un second trait intérieur comme sur les murs peints kasséna.
+   Les couleurs du SVG reprennent --laterite-500 et --night-950.          */
+
+.frieze {
+  height: var(--frieze-height);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40' preserveAspectRatio='none'%3E%3Cpath d='M0 24L8 6L16 24L24 6L32 24L40 6L48 24L56 6L64 24L72 6L80 24L88 6L96 24L104 6L112 24L120 6L128 40L136 6L144 24L152 6L160 24V40H0Z' fill='%23c47a48'/%3E%3Cpath d='M0 33L8 15L16 33L24 15L32 33L40 15L48 33L56 15L64 33L72 15L80 33L88 15L96 33L104 15L112 33L120 15M136 15L144 33L152 15L160 33' fill='none' stroke='%230d0a09' stroke-width='1.25'/%3E%3C/svg%3E");
+  background-size: var(--frieze-tile) 100%;
+  background-repeat: repeat-x;
+}
+
+/* La frise avance lentement, uniquement dans le menu ouvert. */
+.frieze--walk {
+  animation: frieze-walk var(--dur-frieze) linear infinite;
+}
+
+@keyframes frieze-walk {
+  to {
+    background-position-x: calc(var(--frieze-tile) * -6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frieze--walk {
+    animation: none;
+  }
+}
+
+/* ---- Pied de page ------------------------------------------------------- */
+
+.site-footer {
+  display: grid;
+  gap: var(--space-xl);
+  padding-top: var(--space-3xl);
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 48rem) {
+  .site-footer__inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.site-footer__col {
+  display: grid;
+  gap: var(--space-xs);
+  justify-items: start;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: inline-block;
+  padding-block: var(--space-3xs);
+}

@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Concerts
+   Page générée par tools/build-concerts.mjs à partir de contenus/concerts.json.
+   ========================================================================== */
+
+.concerts {
+  display: grid;
+  gap: var(--space-3xl);
+}
+
+.concerts__block {
+  display: grid;
+  gap: var(--space-l);
+}
+
+.concerts-year {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.concerts-year + .concerts-year {
+  margin-top: var(--space-l);
+}
+
+/* L'année en Mona Sans : les chiffres de Goudy sont de style ancien. */
+.concerts-year__title {
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  color: var(--color-text-muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}

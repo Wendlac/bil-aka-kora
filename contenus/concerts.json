@@ -1,0 +1,45 @@
+{
+  "_regles": "Une ligne par concert. « date » au format AAAA-MM-JJ. À venir ou passé est calculé à la construction (node tools/build.mjs) : reconstruire le site pour qu'une date passe dans les archives.",
+  "_ecartes": "Non vérifiés, donc absents : « 26 juin, CENASA » et « Concert de la Joie, Palais des Sports » (maquettes). Le « 26 juin » de la maquette correspond sans doute au concert de Pô du 26 juillet 2026.",
+  "concerts": [
+    {
+      "date": "2026-07-31",
+      "heure": "20 h 30",
+      "ville": "Manga",
+      "pays": "Burkina Faso",
+      "lieu": "Place de la Nation",
+      "nom": "Concert de la Résilience et du Triomphe, avec l'Orchestre de la Présidence du Faso",
+      "lien": "https://www.presidencedufaso.bf/manga-resonne-au-rythme-de-la-resilience-nationale/",
+      "lienLibelle": "Le récit",
+      "lienLibelle_en": "Read the report",
+      "nom_en": "Concert de la Résilience et du Triomphe, with the Presidential Band of Burkina Faso",
+      "heure_en": "8.30 pm"
+    },
+    {
+      "date": "2026-07-26",
+      "heure": "20 h 30",
+      "ville": "Pô",
+      "pays": "Burkina Faso",
+      "lieu": "Place Nemaro",
+      "nom": "Concert de la Résilience et du Triomphe, avec l'Orchestre de la Présidence du Faso",
+      "lien": "https://www.terangatimesn.com/Burkina-Faso-Po-L-Orchestre-de-la-Presidence-du-Faso-fait-vibrer-la-ville-avec-le-Concert-de-la-Resilience-et-du_a6744.html",
+      "lienLibelle": "Le récit",
+      "lienLibelle_en": "Read the report",
+      "nom_en": "Concert de la Résilience et du Triomphe, with the Presidential Band of Burkina Faso",
+      "heure_en": "8.30 pm"
+    },
+    {
+      "date": "2025-12-10",
+      "heure": "21 h",
+      "ville": "Ouagadougou",
+      "pays": "Burkina Faso",
+      "lieu": "SIAO",
+      "nom": "Concert live, à la veille de la fête de l'Indépendance",
+      "lien": "https://lefaso.net/spip.php?article142766",
+      "lienLibelle": "Le récit",
+      "lienLibelle_en": "Read the report",
+      "nom_en": "Live concert, on the eve of Independence Day",
+      "heure_en": "9 pm"
+    }
+  ]
+}

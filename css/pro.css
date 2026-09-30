@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Booking et presse
+   Ordre pensé pour un programmateur pressé : contact, live, chiffres,
+   bio à copier, photos, documents.
+   ========================================================================== */
+
+.pro {
+  display: grid;
+  gap: var(--space-3xl);
+}
+
+.pro__block {
+  display: grid;
+  gap: var(--space-l);
+}
+
+/* ---- Contact ------------------------------------------------------------ */
+
+.contact-card {
+  display: grid;
+  gap: var(--space-m);
+  justify-items: start;
+  padding: var(--space-xl) var(--space-l);
+}
+
+@media (min-width: 48rem) {
+  .contact-card {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    padding: var(--space-2xl);
+  }
+}
+
+.contact-card__main {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.contact-card__email {
+  font-family: var(--font-sans);
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+  color: var(--color-text-strong);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-card__email:hover {
+  color: var(--color-accent);
+}
+
+.contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+}
+
+/* ---- Chiffres clés -----------------------------------------------------------
+   Quatre cards : 2 × 2 sur tablette, 4 sur une ligne sur grand écran.      */
+
+.facts {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 36rem) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.facts .card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+  height: 100%;
+}
+
+.facts p {
+  color: var(--color-text-muted);
+}
+
+/* ---- Bios à copier ---------------------------------------------------------- */
+
+.bio-card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.bio-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.bio-card__text {
+  color: var(--color-text);
+}
+
+/* ---- Photos de presse ------------------------------------------------------- */
+
+.press-photos {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 36rem) {
+  .press-photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.press-photos img {
+  aspect-ratio: var(--ratio-photo);
+  width: 100%;
+  object-fit: cover;
+  background: var(--color-card);
+}

@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Mentions légales
+   Une colonne de lecture, des intertitres, rien d'autre.
+   ========================================================================== */
+
+.legal__body {
+  display: grid;
+  gap: var(--space-2xl);
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+.legal__body > section {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.legal__body h2 {
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+}
+
+.legal__body strong {
+  font-weight: var(--weight-medium);
+  color: var(--color-text-strong);
+}
+
+.legal__notice {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+/* Paires libellé / valeur, sans filet : de l'espace entre les lignes. */
+.legal__facts {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+}
+
+.legal__facts > div {
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+@media (min-width: 40rem) {
+  .legal__facts > div {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-m);
+  }
+}
+
+.legal__facts dt {
+  font-size: var(--step--1);
+  color: var(--color-text-subtle);
+}
+
+.legal__facts dd {
+  margin: 0;
+}
+
+.legal__list {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+/* Champ à remplir avant la mise en ligne : bien visible, jamais oublié. */
+.to-fill {
+  color: var(--color-accent);
+}

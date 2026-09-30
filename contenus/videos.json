@@ -1,0 +1,90 @@
+{
+  "_sources": "Chaîne YouTube officielle https://www.youtube.com/@makawol (flux public UC8Y3p_nY72SeUQgLX9qGMtA). Année = année de publication sur YouTube. Vignettes enregistrées dans images/videos/<id>.jpg. Les titres des vidéos restent ceux publiés sur YouTube, dans les deux langues.",
+  "chaine": "https://www.youtube.com/@makawol",
+  "sections": [
+    {
+      "id": "live",
+      "label": "Live",
+      "titre": "Sur scène et en session",
+      "videos": [
+        {
+          "id": "w4SHs6akfME",
+          "titre": "Dibayagui",
+          "avec": "le Castagnole Community Choir",
+          "annee": 2026,
+          "avec_en": "the Castagnole Community Choir"
+        },
+        {
+          "id": "I2SS71a4HFA",
+          "titre": "Wematou",
+          "avec": "Dramane Dembélé dit Ponpiman",
+          "annee": 2026
+        },
+        {
+          "id": "gYBNkPeDX6c",
+          "titre": "Dibayagui",
+          "avec": "Tamtando",
+          "annee": 2016
+        }
+      ],
+      "label_en": "Live",
+      "titre_en": "On stage and in session"
+    },
+    {
+      "id": "clips",
+      "label": "Clips",
+      "titre": "Clips officiels",
+      "videos": [
+        {
+          "id": "tSn5pgZU6cE",
+          "titre": "Fulu",
+          "annee": 2020
+        },
+        {
+          "id": "3LERQMy5XYA",
+          "titre": "Annou",
+          "avec": "Magic System",
+          "annee": 2018
+        },
+        {
+          "id": "oVnj2u2umsQ",
+          "titre": "Atikéléyé",
+          "annee": 2020
+        },
+        {
+          "id": "2vDAwLBPYf4",
+          "titre": "iii",
+          "annee": 2021
+        },
+        {
+          "id": "mdjtcXdIzTk",
+          "titre": "No More",
+          "annee": 2021
+        }
+      ],
+      "label_en": "Music videos",
+      "titre_en": "Official music videos"
+    },
+    {
+      "id": "rencontres",
+      "label": "Rencontres",
+      "titre": "Autour de la musique",
+      "videos": [
+        {
+          "id": "jZssCCVjrpA",
+          "titre": "La culture gourounsi, bien plus qu'un héritage",
+          "annee": 2026,
+          "langueTitre": "fr"
+        },
+        {
+          "id": "aWkG4ovSYN4",
+          "titre": "Un moment authentique avec Bil Aka Kora",
+          "annee": 2026,
+          "langueTitre": "fr"
+        }
+      ],
+      "label_en": "Encounters",
+      "titre_en": "Around the music"
+    }
+  ]
+}

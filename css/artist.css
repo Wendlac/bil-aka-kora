@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Page artiste : mise en page propre à cette page
+   Le poème d'abord, ponctué de deux photos ; puis le Djongo ; puis les
+   repères ; enfin écouter et programmer.
+   ========================================================================== */
+
+/* ---- Poème -----------------------------------------------------------------
+   Une colonne de lecture centrée, vers alignés à gauche comme dans la
+   maquette. La première strophe, « Écoutez », est un cran plus grande.   */
+
+.poem {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.poem__stanzas {
+  display: grid;
+  gap: var(--space-l);
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+.poem__opening {
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+}
+
+/* Photos insérées dans le poème : plus larges que la colonne de texte. */
+.poem__figure {
+  display: grid;
+  gap: var(--space-s);
+  margin: var(--space-l) 0;
+}
+
+.poem__figure img {
+  width: 100%;
+  background: var(--color-card);
+}
+
+.poem__figure--wide img {
+  aspect-ratio: var(--ratio-video);
+  object-fit: cover;
+}
+
+.poem__figure--portrait {
+  width: min(100%, 28rem);
+  margin-inline: auto;
+}
+
+.poem__figure--portrait img {
+  aspect-ratio: var(--ratio-photo);
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+
+.poem__figure figcaption {
+  text-align: center;
+}
+
+/* ---- Le Djongo ------------------------------------------------------------ */
+
+.djongo {
+  display: grid;
+  gap: var(--space-m);
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+.djongo p:first-of-type {
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--color-text-strong);
+}
+
+.djongo .link-arrow {
+  margin-top: var(--space-xs);
+}
+
+/* ---- Repères ---------------------------------------------------------------- */
+
+.milestones {
+  display: grid;
+  gap: var(--space-2xl);
+  width: min(100%, 48rem);
+  margin-inline: auto;
+}

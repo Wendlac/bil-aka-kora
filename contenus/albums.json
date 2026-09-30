@@ -1,0 +1,255 @@
+{
+  "_sources": {
+    "annees": "Afrisson (afrisson.com/bil-aka-kora-5255), Musiques d'Afrique de Frank Bessem (musiques-afrique.net/burkina/art_bil-aka-kora.html), catalogue Apple Music (itunes.apple.com/lookup). Écarts signalés dans « anneeNote ».",
+    "titres": "Catalogue Apple Music, graphies conservées telles que publiées.",
+    "ordre": "Du plus récent au plus ancien."
+  },
+  "albums": [
+    {
+      "slug": "fulu",
+      "titre": "Fulu",
+      "annee": 2019,
+      "label": "Shamar Empire, Djongo Diffusion",
+      "pochette": "fulu",
+      "texte": [
+        "Sur <em>Fulu</em>, Bil Aka Kora regarde son époque. Le morceau-titre raconte une femme ou un homme arrivé à l'âge mûr après une jeunesse passée à profiter de tout, sauf à choisir l'être aimé.",
+        "Chanté en dioula et en kasséna, <em>Atikeleye</em> invite à prendre soin de la terre comme des valeurs humaines. <em>Mani</em>, en italien et en dioula, parle des violences ordinaires auxquelles chacun fait face au quotidien."
+      ],
+      "distinctions": [],
+      "titres": [
+        [
+          "Introduction",
+          "0:23"
+        ],
+        [
+          "Over",
+          "3:35"
+        ],
+        [
+          "Mani",
+          "3:44",
+          "Italien, dioula",
+          "Italian, Dioula"
+        ],
+        [
+          "Fulu",
+          "4:00"
+        ],
+        [
+          "Atikeleye",
+          "4:03",
+          "Dioula, kasséna",
+          "Dioula, Kassena"
+        ],
+        [
+          "Akian",
+          "4:39"
+        ],
+        [
+          "Entre terre et terre",
+          "5:13",
+          "Avec Malika La Slamazone",
+          "With Malika La Slamazone"
+        ],
+        [
+          "iii",
+          "4:38"
+        ],
+        [
+          "No More",
+          "3:51"
+        ],
+        [
+          "Annou",
+          "3:54",
+          "Avec Magic System",
+          "With Magic System"
+        ],
+        [
+          "Conclusion",
+          "1:08"
+        ]
+      ],
+      "texte_en": [
+        "On <em>Fulu</em>, Bil Aka Kora looks squarely at his time. The title track tells of a woman or man reaching middle age after a youth spent enjoying everything except choosing someone to love.",
+        "Sung in Dioula and Kassena, <em>Atikeleye</em> calls for care of the land as much as of human values. <em>Mani</em>, in Italian and Dioula, speaks of the everyday violence we all have to face."
+      ],
+      "dateISO": "2019-12-19"
+    },
+    {
+      "slug": "vessaba",
+      "titre": "Vessaba",
+      "annee": 2014,
+      "anneeNote": "2013 selon Musiques d'Afrique",
+      "label": "Djongo Diffusion",
+      "pochette": "vessaba",
+      "texte": [
+        "Cinquième album. Son titre dit simplement : partir, et revenir."
+      ],
+      "distinctions": [],
+      "titres": [
+        [
+          "Vesseba",
+          "4:19"
+        ],
+        [
+          "Emergence",
+          "5:07"
+        ],
+        [
+          "Djara",
+          "4:50"
+        ],
+        [
+          "Smandbe",
+          "4:26"
+        ],
+        [
+          "Akossongo",
+          "3:28"
+        ],
+        [
+          "Desherite",
+          "3:24"
+        ],
+        [
+          "Sibiri",
+          "4:07"
+        ]
+      ],
+      "texte_en": [
+        "Fifth album. Its title says it simply: leaving, and coming back."
+      ]
+    },
+    {
+      "slug": "yaaba",
+      "titre": "Yaaba",
+      "annee": 2009,
+      "label": "Djongo Diffusion",
+      "pochette": "yaaba",
+      "texte": [
+        "Quatrième album, mûri longtemps. Enregistré en mai 2008, avec Ray Lema à la direction artistique et au mixage."
+      ],
+      "distinctions": [],
+      "titres": [
+        [
+          "Yaaba",
+          "4:37"
+        ],
+        [
+          "Kampalyo",
+          "3:59"
+        ],
+        [
+          "Pini Jeni",
+          "5:33"
+        ],
+        [
+          "Ganlana",
+          "2:53"
+        ],
+        [
+          "Arythmetique",
+          "4:04"
+        ],
+        [
+          "Kougara",
+          "4:02"
+        ],
+        [
+          "Lalettre",
+          "3:00"
+        ]
+      ],
+      "texte_en": [
+        "Fourth album, long in the making. Recorded in May 2008, with Ray Lema as artistic director and mixing engineer."
+      ]
+    },
+    {
+      "slug": "dibayagui",
+      "titre": "Dibayagui",
+      "annee": 2004,
+      "label": "Djongo Diffusion",
+      "pochette": "dibayagui",
+      "texte": [
+        "Troisième album, porté haut par le public. Réédité en numérique en 2014."
+      ],
+      "distinctions": [
+        "Kundé d'or 2005"
+      ],
+      "titres": [
+        [
+          "Sofia",
+          "3:27"
+        ],
+        [
+          "Wematou",
+          "4:24"
+        ],
+        [
+          "Nonga Foom",
+          "4:24"
+        ],
+        [
+          "Arithmetique",
+          "5:03"
+        ],
+        [
+          "Asiga",
+          "4:46"
+        ],
+        [
+          "Ali Yo",
+          "3:58"
+        ],
+        [
+          "Faiseur De Pluie",
+          "4:58"
+        ]
+      ],
+      "texte_en": [
+        "Third album, carried high by the public. Reissued digitally in 2014."
+      ],
+      "distinctions_en": [
+        "Kundé d'Or 2005"
+      ]
+    },
+    {
+      "slug": "ambolou",
+      "titre": "Ambolou",
+      "annee": 2002,
+      "anneeNote": "2001 selon Musiques d'Afrique",
+      "label": "Djongo Diffusion",
+      "pochette": null,
+      "texte": [
+        "« Ce qui m'est cher ». Deuxième album."
+      ],
+      "distinctions": [
+        "Kundé d'or 2002"
+      ],
+      "titres": [],
+      "texte_en": [
+        "“What is dear to me.” Second album."
+      ],
+      "distinctions_en": [
+        "Kundé d'Or 2002"
+      ]
+    },
+    {
+      "slug": "douatou",
+      "titre": "Douatou",
+      "annee": 1998,
+      "anneeNote": "1999 selon Musiques d'Afrique",
+      "label": "Djongo Diffusion",
+      "pochette": null,
+      "texte": [
+        "Le faiseur de pluie, en kasséna. Premier album, avec le Djongo System, un an après le premier prix de la chanson moderne aux Grands Prix nationaux."
+      ],
+      "distinctions": [],
+      "titres": [],
+      "texte_en": [
+        "The rainmaker, in Kassena. Debut album, with the Djongo System, one year after first prize for modern song at the National Grand Prix."
+      ]
+    }
+  ]
+}

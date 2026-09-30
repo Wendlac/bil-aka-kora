@@ -1,0 +1,6 @@
+# Sources lourdes, non publiées
+sources/
+images/covers/originaux/
+dist/
+.claude/
+node_modules/

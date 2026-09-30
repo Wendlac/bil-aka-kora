@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Accueil : mise en page propre à cette page
+   Sous le hero, quatre blocs, chacun tient en un écran : dernier album,
+   live, prochaines dates, l'artiste.
+   ========================================================================== */
+
+/* ---- Dernier album ------------------------------------------------------ */
+
+.home-release .release__body h2 {
+  font-size: var(--step-5);
+}
+
+.home-release__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-l);
+}
+
+/* ---- Live --------------------------------------------------------------- */
+
+.home-live .video {
+  gap: var(--space-m);
+}
+
+.home-live figcaption {
+  text-align: center;
+}
+
+/* ---- Prochaines dates ------------------------------------------------------
+   Les dates d’abord, sur toute la largeur ; en dessous, une .card-grid :
+   être prévenu (fans) et booking (programmateurs).                       */
+
+/* ---- L'artiste ---------------------------------------------------------- */
+
+.home-artist {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .home-artist {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-3xl);
+  }
+}
+
+.home-artist__photo {
+  aspect-ratio: var(--ratio-photo);
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  background: var(--color-surface-hover);
+}
+
+.home-artist__body {
+  display: grid;
+  gap: var(--space-l);
+  justify-items: start;
+}
+
+.home-artist__body .lead {
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+}
+
+
+.home-dates__cards {
+  margin-top: var(--space-2xl);
+}
