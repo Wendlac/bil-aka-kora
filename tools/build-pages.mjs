@@ -16,6 +16,9 @@
 //                         "page" pour la page même, "true" pour une sous-page
 //   {{s:rubrique}}        adresse de la rubrique dans la langue de la page (ex. {{s:musique}} -> en/music/)
 //
+// Il rend aussi absolue l'image de partage (og:image), que les réseaux sociaux
+// ne lisent qu'en URL complète (adresse du site : tools/lib/site.mjs).
+//
 // Usage :
 //   node tools/build-pages.mjs           met les pages à jour
 //   node tools/build-pages.mjs --check   signale les pages en retard (code 1), sans écrire
@@ -25,6 +28,7 @@ import { existsSync } from "node:fs";
 import { join, relative, resolve, dirname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { toEnglishPath, toFrenchPath, section } from "./lib/i18n.mjs";
+import { SITE_URL } from "./lib/site.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const checkOnly = process.argv.includes("--check");
@@ -104,6 +108,8 @@ for await (const file of pages(root)) {
   }
   let next = html;
   for (const [from, to] of replacements) next = next.replace(from, () => to);
+  const pageUrl = new URL(relative(root, dirname(file)).split(sep).filter(Boolean).map((s) => s + "/").join(""), SITE_URL);
+  next = next.replace(/(<meta property="og:image" content=")([^"]+)(")/g, (_, a, src, b) => a + new URL(src, pageUrl).href + b);
 
   const name = relative(root, file);
   if (next === html) {
